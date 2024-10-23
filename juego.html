@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+ 
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: #3de15e; 
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #000000;
+        }
+
+  
+        button {
+            background-color: #06d6ff; 
+            color: rgb(0, 0, 0);
+            padding: 65px 120px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 12px;
+            border-color: #000000;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f90101; 
+        }
+
+       
+        #resultado {
+            font-size: 1.5em;
+            color: #000000;
+            margin-top: 20px;
+        }
+
+
+        #detalles {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: left;
+        }
+
+        #detalles p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>THE GAME</h1>
+    
+    <p>ELIJE</p>
+
+    <button onclick="jugar('piedra')">👊​​</button>
+    <button onclick="jugar('papel')">🖐️</button>
+    <button onclick="jugar('tijera')">✌️​</button>
+    
+    <h2 id="resultado"></h2>
+
+
+    <div id="detalles">
+        <p>Tu elección: <span id="eleccionJugador"></span></p>
+        <p>Elección del NPC: <span id="eleccionNPC"></span></p>
+        <p>Resultado: <span id="resultadoJuego"></span></p>
+    </div>
+
+    <script>
+        function jugar(eleccionJugador) {
+       
+            var npc = Math.random();
+            if (npc < 0.34) {
+                npc = "piedra";
+            } else if (npc <= 0.67) {
+                npc = "papel";
+            } else {
+                npc = "tijera";
+            }
+
+    
+            document.getElementById("eleccionJugador").innerText = eleccionJugador;
+            document.getElementById("eleccionNPC").innerText = npc;
+
+    
+            var resultado;
+            if (eleccionJugador === npc) {
+                resultado = "Es un empate!";
+            } else if (eleccionJugador === "piedra") {
+                if (npc === "tijera") {
+                    resultado = "¡Ganaste!";
+                } else {
+                    resultado = "Perdiste, el NPC gana.";
+                }
+            } else if (eleccionJugador === "papel") {
+                if (npc === "piedra") {
+                    resultado = "¡Ganaste!";
+                } else {
+                    resultado = "Perdiste, el NPC gana.";
+                }
+            } else if (eleccionJugador === "tijera") {
+                if (npc === "papel") {
+                    resultado = "¡Ganaste!";
+                } else {
+                    resultado = "Perdiste, el NPC gana.";
+                }
+            }
+
+       
+            document.getElementById("resultadoJuego").innerText = resultado;
+        }
+    </script>
+</body>
+</html>
